@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fantômes — Débusque les abonnements qu'on paie sans s'en servir</title>
+<meta name="description" content="Dépose ton relevé bancaire, on repère en quelques minutes les abonnements oubliés et on te prépare les lettres pour les résilier.">
+<meta property="og:title" content="Fantômes — Débusque les abonnements qu'on paie sans s'en servir">
+<meta property="og:description" content="Un audit de ton relevé bancaire, les abonnements fantômes listés, les lettres de résiliation prêtes.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,650;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1A17;
+    --ink-soft:#4A473F;
+    --cream:#EFE8DA;
+    --cream-raised:#E4DBC8;
+    --rust:#C1502E;
+    --rust-deep:#9C3D22;
+    --line: rgba(27,26,23,0.14);
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html{scroll-padding-top: env(safe-area-inset-top, 0px);}
+  *,*::before,*::after{box-sizing:inherit;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:"Work Sans", Arial, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#F1ECE0; --ink-soft:#C9C2AF; --cream:#17150F; --cream-raised:#221F17; --line: rgba(241,236,224,0.16);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#F1ECE0; --ink-soft:#C9C2AF; --cream:#17150F; --cream-raised:#221F17; --line: rgba(241,236,224,0.16);
+  }
+  .wrap{max-width:640px; margin:0 auto; padding:0 24px;}
+  header.top{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 24px calc(22px + env(safe-area-inset-top,0px));
+  }
+  .mark{font-family:"Fraunces", serif; font-weight:650; font-size:20px; letter-spacing:-0.01em;}
+  .mark span{color:var(--rust);}
+
+  main{padding-bottom:64px;}
+
+  .hero{padding:20px 0 8px;}
+  h1{
+    font-family:"Fraunces", serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(30px, 8vw, 42px);
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    margin:0 0 18px;
+    max-width:15ch;
+  }
+  .sub{
+    font-size:17px;
+    line-height:1.55;
+    color:var(--ink-soft);
+    max-width:38ch;
+    margin:0 0 28px;
+  }
+
+  .receipt{
+    background:var(--cream-raised);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:20px 18px;
+    margin:0 0 30px;
+    font-size:15px;
+  }
+  .receipt-row{
+    display:flex; justify-content:space-between; gap:12px;
+    padding:8px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .receipt-row:last-child{border-bottom:none;}
+  .receipt-row.ghost{color:var(--rust-deep); text-decoration:line-through; text-decoration-thickness:1.5px;}
+  .receipt-total{
+    display:flex; justify-content:space-between;
+    padding-top:14px; margin-top:6px; border-top:1px solid var(--ink);
+    font-weight:600;
+  }
+  .receipt-total b{color:var(--rust);}
+
+  .cta{
+    display:block; text-align:center;
+    background:var(--rust); color:#FBF6EC;
+    font-family:"Work Sans", sans-serif; font-weight:600; font-size:17px;
+    padding:17px 20px; border-radius:3px;
+    text-decoration:none;
+    border:none;
+    width:100%;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.12);
+  }
+  .cta:active{background:var(--rust-deep);}
+  .cta-note{
+    text-align:center; font-size:13px; color:var(--ink-soft); margin:10px 0 0;
+  }
+
+  section.benefits{
+    padding:44px 0 8px;
+    border-top:1px solid var(--line);
+    margin-top:44px;
+  }
+  .benefit{padding:18px 0; border-bottom:1px solid var(--line);}
+  .benefit:last-child{border-bottom:none;}
+  .benefit h3{
+    font-family:"Fraunces", serif; font-weight:560; font-size:18px; margin:0 0 6px;
+  }
+  .benefit p{margin:0; color:var(--ink-soft); font-size:15px; line-height:1.5;}
+  .glyph{width:22px; height:22px; margin-bottom:10px; display:block;}
+
+  section.pricing{
+    padding:44px 0 8px;
+    border-top:1px solid var(--line);
+    margin-top:44px;
+  }
+  .pricing h2{
+    font-family:"Fraunces", serif; font-style:italic; font-weight:500;
+    font-size:24px; margin:0 0 22px;
+  }
+  .offer{
+    background:var(--cream-raised);
+    border:1px solid var(--line);
+    padding:20px;
+    margin-bottom:14px;
+  }
+  .offer.primary{border-color:var(--rust);}
+  .offer-top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px;}
+  .offer-name{font-weight:600; font-size:15px;}
+  .offer-price{font-family:"Fraunces", serif; font-weight:650; font-size:22px;}
+  .offer p{margin:0; color:var(--ink-soft); font-size:14px; line-height:1.5;}
+
+  footer{
+    padding:36px 0 calc(36px + env(safe-area-inset-bottom,0px));
+    border-top:1px solid var(--line);
+    margin-top:44px;
+    font-size:13px; color:var(--ink-soft);
+  }
+  footer a{color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="mark">Fant<span>ô</span>mes</div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <h1>Il traîne sûrement un abonnement que tu as oublié.</h1>
+    <p class="sub">Dépose ton relevé bancaire. On repère les prélèvements récurrents que tu ne remarques plus, et on te prépare de quoi les arrêter.</p>
+
+    <div class="receipt">
+      <div class="receipt-row"><span>Salle de sport</span><span>29,99 €/mois</span></div>
+      <div class="receipt-row ghost"><span>Appli méditation — jamais rouverte</span><span>6,99 €/mois</span></div>
+      <div class="receipt-row ghost"><span>Essai gratuit d'un cloud photo</span><span>2,49 €/mois</span></div>
+      <div class="receipt-row"><span>Box repas</span><span>39,90 €/mois</span></div>
+      <div class="receipt-total"><span>Fantômes repérés</span><b>113 €/an</b></div>
+    </div>
+
+    <a href="https://buy.stripe.com/00wfZhcTt6qq8medFZ5Ne00" class="cta">Débusquer mes abonnements fantômes — 19 €</a>
+    <p class="cta-note">Paiement unique. Résultat sous 24h.</p>
+  </section>
+
+  <section class="benefits">
+    <div class="benefit">
+      <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="#C1502E" stroke-width="1.6"><path d="M4 18V8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v10l-3-2-3 2-3-2-3 2-4-2Z"/></svg>
+      <h3>Ton relevé, rien d'autre</h3>
+      <p>Un export PDF ou CSV suffit. On ne demande jamais tes identifiants bancaires.</p>
+    </div>
+    <div class="benefit">
+      <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="#C1502E" stroke-width="1.6"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+      <h3>Classé par ce que ça coûte vraiment</h3>
+      <p>Chaque prélèvement, ramené à son coût sur l'année. Le petit montant mensuel devient enfin visible.</p>
+    </div>
+    <div class="benefit">
+      <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="#C1502E" stroke-width="1.6"><path d="M6 4h9l5 5v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/><path d="M9 13h6M9 17h4"/></svg>
+      <h3>La lettre de résiliation, déjà écrite</h3>
+      <p>Pour chaque abonnement repéré, un courrier prêt à envoyer. Il ne reste plus qu'à l'expédier.</p>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <h2>Un prix, un choix</h2>
+
+    <div class="offer primary">
+      <div class="offer-top"><span class="offer-name">Audit complet</span><span class="offer-price">19 €</span></div>
+      <p>Un passage unique sur ton relevé actuel. Tu gardes le résultat et les lettres, sans engagement.</p>
+    </div>
+
+    <div class="offer">
+      <div class="offer-top"><span class="offer-name">Surveillance continue</span><span class="offer-price">4 €/mois</span></div>
+      <p>Pour être re-scanné chaque mois si de nouveaux abonnements s'ajoutent. À activer après ton premier audit.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <p>Fantômes — [raison sociale à compléter], [SIRET à compléter]. Contact : [email à compléter].</p>
+  <p><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></p>
+</footer>
+
+</body>
+</html>
