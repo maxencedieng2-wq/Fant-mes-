@@ -150,6 +150,15 @@
     font-size:13px; color:var(--ink-soft);
   }
   footer a{color:var(--ink-soft);}
+
+  .legal{display:none; max-width:640px; margin:0 auto; padding:24px 24px calc(48px + env(safe-area-inset-bottom,0px));}
+  .legal:target{display:block;}
+  body:has(.legal:target) header.top, body:has(.legal:target) main, body:has(.legal:target) > footer{display:none;}
+  .legal a.back{display:inline-block; margin-bottom:18px; color:var(--rust); font-weight:600; text-decoration:none;}
+  .legal h2{font-family:"Fraunces", serif; font-weight:560; font-size:26px; margin:0 0 18px;}
+  .legal h3{font-family:"Fraunces", serif; font-weight:560; font-size:17px; margin:24px 0 6px;}
+  .legal p, .legal li{font-size:15px; line-height:1.6; color:var(--ink-soft); margin:0 0 10px;}
+  .legal ul{padding-left:20px; margin:0 0 10px;}
 </style>
 </head>
 <body>
@@ -211,9 +220,65 @@
 </main>
 
 <footer class="wrap">
-  <p>Fantômes — [raison sociale à compléter], [SIRET à compléter]. Contact : [email à compléter].</p>
-  <p><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></p>
+  <p>Fantômes est un service édité par Maxence Dieng, entrepreneur individuel — RCS Reims 940 462 476. Contact : <a href="mailto:productseffects@gmail.com">productseffects@gmail.com</a></p>
+  <p><a href="#mentions-legales">Mentions légales</a> · <a href="#cgv">CGV</a> · <a href="#confidentialite">Confidentialité</a></p>
 </footer>
+
+
+<section class="legal" id="mentions-legales">
+  <a class="back" href="#">Retour à l'accueil</a>
+  <h2>Mentions légales</h2>
+  <h3>Éditeur du site</h3>
+  <p>Fantômes est édité par Maxence Dieng, entrepreneur individuel, immatriculé au RCS de Reims sous le numéro 940 462 476.</p>
+  <p>Contact : productseffects@gmail.com</p>
+  <p>TVA non applicable, article 293 B du Code général des impôts.</p>
+  <h3>Directeur de la publication</h3>
+  <p>Maxence Dieng.</p>
+  <h3>Hébergeur</h3>
+  <p>Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis. vercel.com</p>
+  <h3>Propriété intellectuelle</h3>
+  <p>Les textes, visuels et le nom Fantômes sont la propriété de l'éditeur. Toute reproduction sans accord écrit est interdite.</p>
+</section>
+
+<section class="legal" id="cgv">
+  <a class="back" href="#">Retour à l'accueil</a>
+  <h2>Conditions générales de vente</h2>
+  <h3>Vendeur</h3>
+  <p>Maxence Dieng, entrepreneur individuel, RCS Reims 940 462 476, contact : productseffects@gmail.com.</p>
+  <h3>Service vendu</h3>
+  <p>L'audit Fantômes : à partir du relevé bancaire que le client transmet par email, le vendeur repère les prélèvements récurrents, les classe par coût annuel et fournit une lettre de résiliation par abonnement repéré. Le rapport est envoyé par email, en principe sous 24 heures après réception du relevé.</p>
+  <p>La surveillance continue mentionnée sur le site fera l'objet de conditions distinctes lors de sa mise en service.</p>
+  <h3>Prix et paiement</h3>
+  <p>L'audit coûte 19 € TTC (TVA non applicable, article 293 B du CGI), payable en une fois par carte bancaire ou Apple Pay via Stripe. Le vendeur ne conserve aucune donnée de carte.</p>
+  <h3>Livraison</h3>
+  <p>Le client envoie son relevé (PDF ou CSV) à l'adresse indiquée après le paiement, en précisant l'email utilisé pour payer. Le rapport lui est envoyé à cette adresse.</p>
+  <h3>Droit de rétractation</h3>
+  <p>Le client dispose de 14 jours pour se rétracter. Toutefois, s'il demande l'exécution du service avant la fin de ce délai, il renonce à son droit de rétractation dès que le service est entièrement exécuté, c'est-à-dire dès l'envoi du rapport. Avant l'envoi du rapport, il peut demander le remboursement en écrivant à productseffects@gmail.com.</p>
+  <h3>Responsabilité</h3>
+  <p>Le rapport est établi à partir du seul relevé fourni. Il est indicatif : c'est au client de vérifier chaque abonnement avant de le résilier. Le vendeur n'est pas responsable de la décision de résilier ou non un contrat.</p>
+  <h3>Litiges</h3>
+  <p>Les présentes conditions sont soumises au droit français. En cas de litige, le client peut recourir gratuitement à un médiateur de la consommation, après avoir écrit d'abord au vendeur.</p>
+</section>
+
+<section class="legal" id="confidentialite">
+  <a class="back" href="#">Retour à l'accueil</a>
+  <h2>Politique de confidentialité</h2>
+  <h3>Données collectées</h3>
+  <ul>
+    <li>Ton adresse email et ton nom, lors du paiement.</li>
+    <li>Ton relevé bancaire, que tu nous envoies par email pour l'audit.</li>
+  </ul>
+  <h3>Pourquoi</h3>
+  <p>Uniquement pour réaliser l'audit que tu as acheté et te livrer le rapport. Base légale : l'exécution du contrat. Aucune donnée n'est vendue ni utilisée pour de la publicité.</p>
+  <h3>Durée de conservation</h3>
+  <p>Ton relevé est supprimé dans les 30 jours suivant l'envoi du rapport. Les données de paiement sont conservées par Stripe selon les obligations légales.</p>
+  <h3>Qui y a accès</h3>
+  <p>Le vendeur, et les prestataires techniques : Stripe (paiement), Google (messagerie) et Vercel (hébergement du site). Certains sont situés hors de l'Union européenne et appliquent des garanties reconnues (clauses contractuelles types).</p>
+  <h3>Cookies</h3>
+  <p>Ce site ne dépose aucun cookie de suivi. Il n'utilise pas, à ce jour, de mesure d'audience.</p>
+  <h3>Tes droits</h3>
+  <p>Tu peux demander l'accès, la correction ou la suppression de tes données, en écrivant à productseffects@gmail.com. Tu peux aussi saisir la CNIL (cnil.fr) si tu estimes que tes droits ne sont pas respectés.</p>
+</section>
 
 </body>
 </html>
