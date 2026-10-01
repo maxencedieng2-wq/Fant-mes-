@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fantômes — retrouve l'argent des abonnements oubliés</title>
+<style>
+:root{--bg:#f3eee3;--ink:#17140f;--mute:#6b6457;--acc:#c2410c;--line:#d9d1bf;--card:#fbf8f1;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14120e;--ink:#f1ebdd;--mute:#a39b8a;--acc:#ff8a4c;--line:#34302600;--line:#342f25;--card:#1c1914}}
+:root[data-theme="dark"]{--bg:#14120e;--ink:#f1ebdd;--mute:#a39b8a;--acc:#ff8a4c;--line:#342f25;--card:#1c1914}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.5}
+main{max-width:640px;margin:0 auto;padding:44px 22px 56px}
+.tag{font:600 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+h1{font-size:clamp(32px,8vw,48px);line-height:1.08;margin:18px 0 18px;letter-spacing:-.02em}
+h1 s{text-decoration-color:var(--acc);text-decoration-thickness:3px;color:var(--mute)}
+.lead{font-size:19px;color:var(--mute);margin:0 0 30px}
+ul{list-style:none;padding:0;margin:0 0 34px;border-top:1px solid var(--line)}
+li{padding:16px 0;border-bottom:1px solid var(--line);display:flex;gap:14px}
+li b{font:600 13px/1.6 ui-monospace,Menlo,monospace;color:var(--acc);min-width:24px}
+li span{font-size:17px}
+li strong{display:block;font-size:18px}
+form{background:var(--card);border:1px solid var(--line);padding:20px;border-radius:4px}
+label{display:block;font-size:16px;margin-bottom:10px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+input{flex:1 1 200px;font:inherit;font-size:16px;padding:12px;border:1px solid var(--ink);background:var(--bg);color:var(--ink);border-radius:2px}
+button{font:600 16px Georgia,serif;padding:12px 18px;border:0;background:var(--ink);color:var(--bg);border-radius:2px;cursor:pointer}
+small{display:block;margin-top:10px;color:var(--mute);font-size:14px}
+</style>
+</head>
+<body>
+<main>
+  <div class="tag">Fantômes</div>
+  <h1>Tu paies pour des abonnements que tu <s>n'utilises plus</s>. On les retrouve.</h1>
+  <p class="lead">J'aide les particuliers à récupérer l'argent qui part chaque mois dans des abonnements oubliés, sans éplucher leurs relevés à la main.</p>
+  <ul>
+    <li><b>01</b><span><strong>Dépose ton relevé</strong>On repère tous les prélèvements qui reviennent, même ceux que tu avais oubliés.</span></li>
+    <li><b>02</b><span><strong>Vois ce que ça te coûte par an</strong>Une liste classée du plus cher au moins cher, avec le total que tu pourrais économiser.</span></li>
+    <li><b>03</b><span><strong>Résilie en deux minutes</strong>Une lettre de résiliation prête à envoyer pour chaque abonnement.</span></li>
+  </ul>
+  <form id="f">
+    <label for="e">Je veux être prévenu au lancement et tester gratuitement en avant-première.</label>
+    <div class="row">
+      <input id="e" type="email" required placeholder="ton@email.fr" autocomplete="email">
+      <button type="submit">Je m'inscris</button>
+    </div>
+    <small>Aucun spam. Un seul email, le jour de l'ouverture.</small>
+  </form>
+</main>
+<script>
+document.getElementById('f').addEventListener('submit',function(ev){
+  ev.preventDefault();
+  var m=document.getElementById('e').value.trim();
+  if(!m)return;
+  location.href='mailto:productseffects@gmail.com?subject='+encodeURIComponent('Liste beta Fantômes')+'&body='+encodeURIComponent('Inscris-moi à la liste beta Fantômes : '+m);
+});
+</script>
+</body>
+</html>
